@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Delivery Weekly Review</title>
+  <style>
+    :root {
+      --bg: #f3efe6;
+      --paper: #fffdf8;
+      --ink: #171411;
+      --muted: #696158;
+      --line: #ded2c1;
+      --red: #a83624;
+      --amber: #a86600;
+      --green: #0f7350;
+      --blue: #1c314f;
+      --hero: linear-gradient(135deg, #171411 0%, #21324f 58%, #0f7350 100%);
+      --shadow: 0 18px 45px rgba(23, 20, 17, 0.09);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(168, 102, 0, 0.12), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(15, 115, 80, 0.10), transparent 30%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    .hero {
+      background: var(--hero);
+      color: #fff;
+      padding: 64px 24px 48px;
+    }
+
+    .wrap,
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.35rem, 4vw, 4.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      max-width: 850px;
+    }
+
+    .subtitle {
+      max-width: 820px;
+      margin: 0 0 26px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.05rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 15px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 2px;
+    }
+
+    .stat span {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.84rem;
+    }
+
+    .wrap {
+      padding: 34px 24px 72px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+    }
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .red {
+      color: var(--red);
+      background: #fff0ed;
+    }
+
+    .amber {
+      color: var(--amber);
+      background: #fff6df;
+    }
+
+    .green {
+      color: var(--green);
+      background: #e9f7f1;
+    }
+
+    .board {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    .board th,
+    .board td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.92rem;
+    }
+
+    .board th {
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .board tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .callout {
+      border-left: 5px solid var(--amber);
+      background: #fff8eb;
+    }
+
+    .footer {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 14px;
+    }
+
+    .back-link {
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+      font-weight: 700;
+    }
+
+    @media (max-width: 820px) {
+      .stats,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .board {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Sanitized public example</div>
+      <h1>Program Delivery Weekly Review</h1>
+      <p class="subtitle">A generic executive readout template for tracking a complex multi-team launch. All program names, people, ticket IDs, partner names, and proprietary details have been removed.</p>
+      <div class="stats">
+        <div class="stat"><strong>At Risk</strong><span>Overall status</span></div>
+        <div class="stat"><strong>Unknown</strong><span>Program ETA</span></div>
+        <div class="stat"><strong>Weekly</strong><span>Review cadence</span></div>
+        <div class="stat"><strong>4</strong><span>Decision areas</span></div>
+      </div>
+      <p class="subtitle" style="margin-top: 22px;"><a class="back-link" href="index.html">Back to Milton Lee</a></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card callout">
+      <h2>Executive Readout</h2>
+      <p><strong>Concern:</strong> The program is at risk because a critical downstream workstream does not yet have a locked owner, delivery plan, or confirmed dependency path.</p>
+      <p><strong>ETA / target:</strong> The overall ETA should remain unknown until the critical path is confirmed. Some component workstreams may have target windows, but those should not be treated as a launch commitment.</p>
+      <p><strong>Next steps:</strong> Lock ownership, confirm dependency sequencing, resolve policy and operational decisions, then re-run evidence verification before sharing an executive-ready update.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>What Changed</h2>
+        <ul>
+          <li>A key product decision moved from open question to proposed direction.</li>
+          <li>One compliance review path was clarified, but final approval evidence is still pending.</li>
+          <li>A data dependency started moving, but completion has not been verified.</li>
+          <li>Ownership gaps remain on the downstream handoff that controls the launch path.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Active Watch Items</h2>
+        <ul>
+          <li>Critical workstream owner and plan are not locked.</li>
+          <li>External operating model decision is unresolved.</li>
+          <li>Platform readiness remains in triage.</li>
+          <li>Review approval is scheduled, but approval evidence is not available yet.</li>
+          <li>Overall launch date should stay unknown until blockers close.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Status Board</h2>
+      <table class="board">
+        <thead>
+          <tr>
+            <th>Stream</th>
+            <th>Status</th>
+            <th>Owner</th>
+            <th>Top Evidence / Blocker</th>
+            <th>ETA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Overall Program</td><td><span class="pill red">At Risk</span></td><td>Program Lead</td><td>Critical path still depends on ownership, policy, legal, and operational decisions.</td><td>Unknown</td></tr>
+          <tr><td>Customer Entry</td><td><span class="pill amber">Watch</span></td><td>Product + Engineering</td><td>Healthiest stream, but still has active review and integration work.</td><td>Target window</td></tr>
+          <tr><td>Application Flow</td><td><span class="pill red">At Risk</span></td><td>Product Engineering</td><td>Implementation is moving, but design review and backend dependency evidence are incomplete.</td><td>Low confidence</td></tr>
+          <tr><td>Decisioning + Data</td><td><span class="pill red">At Risk</span></td><td>Data + Platform</td><td>Policy closure and data mapping are needed before downstream teams can finalize.</td><td>Unknown</td></tr>
+          <tr><td>Fulfillment Handoff</td><td><span class="pill red">At Risk</span></td><td>TBD</td><td>Owner, scope, and delivery sequencing must be locked.</td><td>Unknown</td></tr>
+          <tr><td>Compliance Review</td><td><span class="pill amber">Watch</span></td><td>Compliance + Legal</td><td>Direction is clearer, but final approval evidence is still pending.</td><td>Unknown</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Next Actions</h2>
+        <ul>
+          <li>Confirm the owner and delivery plan for the critical downstream stream.</li>
+          <li>Close the policy decision that unblocks data mapping and customer messaging.</li>
+          <li>Confirm the remaining legal and compliance signoff path.</li>
+          <li>Resolve the external operating model and settlement cadence.</li>
+          <li>Re-check evidence after the next program review before publishing a final readout.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>How To Read This</h2>
+        <ul>
+          <li>Use status color for executive attention, not optimism.</li>
+          <li>Keep ETA unknown when dependency evidence is weak or missing.</li>
+          <li>Separate component targets from overall launch commitments.</li>
+          <li>Call out the next decision that would materially reduce risk.</li>
+        </ul>
+      </div>
+    </section>
+
+    <p class="footer">This is a public-safe sanitized template. It does not include confidential program names, people, ticket IDs, partner names, source documents, or internal evidence.</p>
+  </main>
+</body>
+</html>
